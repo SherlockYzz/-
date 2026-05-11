@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慧眼识瓷 - 宋煌官瓷数字化体验平台</title>
+    <meta name="description" content="宋煌官瓷数字化体验平台 - 器以载道，AI赋能非遗技艺数字化传承">
+
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== Loading Screen ==================== -->
+<div id="loading-screen">
+    <div class="text-center">
+        <div class="loader-ring mx-auto mb-4"></div>
+        <p class="text-text-body text-sm tracking-wider" data-i18n="loading">加载中...</p>
+    </div>
+</div>
+
+<!-- ==================== Navigation (极简) ==================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo + 标题 -->
+            <a href="#hero" class="flex items-center gap-2.5 shrink-0">
+                <div class="w-8 h-8 rounded-full bg-tianqing flex items-center justify-center">
+                    <i class="fa-solid fa-circle-dot text-white text-xs"></i>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="font-serif-cn font-light text-text-title text-lg tracking-widest" data-i18n="card1.title">慧眼识瓷</span>
+                    <span class="text-[10px] text-text-muted tracking-wider font-light">河南大学仝瓷记忆团队</span>
+                </div>
+            </a>
+
+            <!-- 右侧控件 -->
+            <div class="flex items-center gap-2">
+                <button id="lang-toggle" class="px-3 py-1 text-xs font-medium rounded-full border border-border-light text-text-body hover:border-tianqing hover:text-tianqing-deep transition-colors tracking-wider" aria-label="切换语言">中/EN</button>
+                <button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-yuebai transition-colors" aria-label="用户中心" onclick="toggleCart()">
+                    <i class="fa-solid fa-bag-shopping text-text-body text-sm"></i>
+                </button>
+                <button id="hamburger" class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5" aria-label="菜单">
+                    <span class="w-5 h-0.5 bg-text-title rounded"></span>
+                    <span class="w-5 h-0.5 bg-text-title rounded"></span>
+                    <span class="w-3 h-0.5 bg-text-title rounded ml-auto"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <button id="mobile-close" class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center" aria-label="关闭菜单">
+        <i class="fa-solid fa-xmark text-2xl text-text-title"></i>
+    </button>
+    <a href="#hero" data-i18n="nav.home">首页</a>
+    <a href="#museum">沉浸式博物馆</a>
+    <a href="#workshop" data-i18n="nav.workshop">匠心工坊</a>
+    <a href="#history" data-i18n="nav.history">官瓷通史</a>
+    <a href="#3d-gallery" data-i18n="nav.3d">3D展馆</a>
+    <a href="#ar-exp" data-i18n="nav.ar">AR体验</a>
+    <a href="#exhibition" data-i18n="nav.exhibition">展览预约</a>
+    <a href="#shop" data-i18n="nav.shop">在线商城</a>
+    <a href="#about" data-i18n="nav.about">关于我们</a>
+</div>
+
+<!-- ==================== Hero Section ==================== -->
+<section id="hero" class="hero-section">
+    <div class="hero-bg" role="img" aria-label="宋代官瓷制作场景"></div>
+    <div class="hero-overlay"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <!-- 团队名称 -->
+        <p class="text-tianqing-deep text-xs tracking-[0.3em] mb-6 font-medium" style="text-indent:0.3em">河南大学仝瓷记忆团队</p>
+        <!-- 主图 1.png -->
+        <div class="hero-main-image mb-8 fade-up">
+            <img src="./images/1.png" alt="宋煌官瓷" class="mx-auto rounded-2xl shadow-lg" style="max-height:420px; max-width:100%; object-fit:contain;">
+        </div>
+        <h1 class="text-text-title mb-3" data-i18n="hero.title">宋煌官瓷</h1>
+        <p class="text-text-body text-base sm:text-lg mb-8 font-light tracking-[0.12em]" data-i18n="hero.subtitle">器以载道 · AI赋能非遗技艺数字化传承</p>
+        <div class="section-divider mx-auto mb-8"></div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#3d-gallery" class="px-8 py-3 bg-tianqing-deep text-white rounded-full font-normal text-sm tracking-wider hover:bg-tianqing transition-colors" data-i18n="hero.cta1">进入3D展馆</a>
+            <a href="#ar-exp" class="px-8 py-3 bg-white text-text-body rounded-full font-normal text-sm tracking-wider border border-border-light hover:border-tianqing hover:text-tianqing-deep transition-colors" data-i18n="hero.cta2">AR实景体验</a>
+        </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-text-muted">
+        <span class="text-xs tracking-wider" data-i18n="hero.scroll">向下探索</span>
+        <i class="fa-solid fa-chevron-down text-sm"></i>
+    </div>
+</section>
+
+<!-- ==================== Quick Navigation ==================== -->
+<section class="py-6 bg-white border-b border-border-light">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="quick-nav">
+            <a href="#workshop"><i class="fa-solid fa-hammer"></i> 匠心工坊</a>
+            <a href="#history"><i class="fa-solid fa-scroll"></i> 官瓷通史</a>
+            <a href="#3d-gallery"><i class="fa-solid fa-cube"></i> 3D展馆</a>
+            <a href="#ar-exp"><i class="fa-solid fa-camera"></i> AR体验</a>
+            <a href="#exhibition"><i class="fa-solid fa-calendar"></i> 展览预约</a>
+            <a href="#shop"><i class="fa-solid fa-bag-shopping"></i> 在线商城</a>
+            <a href="#about"><i class="fa-solid fa-circle-info"></i> 关于我们</a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Image Carousel ==================== -->
+<section class="py-16 sm:py-20 bg-bg-main">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-title-group fade-up">
+            <h2>官瓷珍品赏鉴</h2>
+            <p class="section-subtitle">千年匠心，一器一世界</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="carousel-container fade-up" id="main-carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="./images/1.jpg" alt="宋代官瓷珍品">
+                    <div class="slide-overlay">
+                        <h3>宋代官瓷</h3>
+                        <p>天青色等烟雨，千年匠心传承</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./images/6.jpg" alt="官瓷制作工艺">
+                    <div class="slide-overlay">
+                        <h3>制作工艺</h3>
+                        <p>72道工序，每一步都凝聚匠心</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./images/7.jpg" alt="官瓷釉色之美">
+                    <div class="slide-overlay">
+                        <h3>釉色之美</h3>
+                        <p>雨过天青云破处，这般颜色做将来</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./images/8.jpg" alt="拉坯技艺">
+                    <div class="slide-overlay">
+                        <h3>拉坯技艺</h3>
+                        <p>一气呵成，匠心独运</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="./images/9.jpg" alt="修坯工序">
+                    <div class="slide-overlay">
+                        <h3>修坯工序</h3>
+                        <p>精雕细琢，追求极致</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+                <i class="fa-solid fa-chevron-left text-text-title"></i>
+            </button>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">
+                <i class="fa-solid fa-chevron-right text-text-title"></i>
+            </button>
+            <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Icon Showcase ==================== -->
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-title-group fade-up">
+            <h2>工艺图标展示</h2>
+            <p class="section-subtitle">官瓷制作核心工艺</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="icon-showcase fade-up">
+            <div class="icon-item">
+                <img src="./images/图标/1.jpg" alt="选料工艺">
+                <span>选料</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/2.jpg" alt="揉泥工艺">
+                <span>揉泥</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/3.jpg" alt="拉坯工艺">
+                <span>拉坯</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/4.jpg" alt="修坯工艺">
+                <span>修坯</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/5.jpg" alt="施釉工艺">
+                <span>施釉</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/6.jpg" alt="烧制工艺">
+                <span>烧制</span>
+            </div>
+            <div class="icon-item">
+                <img src="./images/图标/7.jpg" alt="成品检验">
+                <span>成品</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Core Feature Entry ==================== -->
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="entry-grid">
+            <a href="#workshop" class="flex flex-col items-center gap-4 group fade-up">
+                <div class="w-20 h-20 rounded-full bg-yuebai flex items-center justify-center group-hover:bg-tianqing/15 transition-colors">
+                    <i class="fa-solid fa-hand-scissors text-2xl text-tianqing-deep"></i>
+                </div>
+                <span class="text-sm font-normal text-text-title tracking-wider" data-i18n="entry.knead">揉泥技法</span>
+            </a>
+            <a href="#workshop" class="flex flex-col items-center gap-4 group fade-up" style="transition-delay:0.1s">
+                <div class="w-20 h-20 rounded-full bg-yuebai flex items-center justify-center group-hover:bg-tianqing/15 transition-colors">
+                    <i class="fa-solid fa-circle text-2xl text-tianqing-deep"></i>
+                </div>
+                <span class="text-sm font-normal text-text-title tracking-wider" data-i18n="entry.throw">拉坯成型</span>
+            </a>
+            <a href="#workshop" class="flex flex-col items-center gap-4 group fade-up" style="transition-delay:0.2s">
+                <div class="w-20 h-20 rounded-full bg-yuebai flex items-center justify-center group-hover:bg-tianqing/15 transition-colors">
+                    <i class="fa-solid fa-pen-nib text-2xl text-tianqing-deep"></i>
+                </div>
+                <span class="text-sm font-normal text-text-title tracking-wider" data-i18n="entry.carve">精细雕刻</span>
+            </a>
+            <a href="#workshop" class="flex flex-col items-center gap-4 group fade-up" style="transition-delay:0.3s">
+                <div class="w-20 h-20 rounded-full bg-yuebai flex items-center justify-center group-hover:bg-tianqing/15 transition-colors">
+                    <i class="fa-solid fa-sun text-2xl text-tianqing-deep"></i>
+                </div>
+                <span class="text-sm font-normal text-text-title tracking-wider" data-i18n="entry.fire">烧制工艺</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Theme Slogan ==================== -->
+<section class="slogan-section">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="fade-up" data-i18n="slogan.title">器以载道</h2>
+        <p class="section-subtitle fade-up" data-i18n="slogan.subtitle">AI赋能非遗技艺数字化传承</p>
+        <div class="section-divider fade-up"></div>
+    </div>
+</section>
+
+<!-- ==================== Main Feature Cards ==================== -->
+<section class="py-8 sm:py-12 bg-bg-main">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <a href="#ar-exp" class="feature-card p-8 sm:p-10 flex items-center justify-between fade-up cursor-pointer no-underline">
+                <div>
+                    <span class="badge bg-tianqing-deep mb-3" data-i18n="card1.tag">AI识别</span>
+                    <h3 class="mt-3 mb-2 text-xl font-light" data-i18n="card1.title">慧眼识瓷</h3>
+                    <p class="text-text-body text-sm font-light" data-i18n="card1.desc">AR扫一扫，解锁千年非遗故事</p>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-yuebai flex items-center justify-center shrink-0 ml-4">
+                    <i class="fa-solid fa-camera text-xl text-tianqing-deep"></i>
+                </div>
+            </a>
+            <a href="#3d-gallery" class="feature-card p-8 sm:p-10 flex items-center justify-between fade-up cursor-pointer no-underline" style="transition-delay:0.1s">
+                <div>
+                    <span class="badge bg-tianqing mb-3" data-i18n="card2.tag">互动操作</span>
+                    <h3 class="mt-3 mb-2 text-xl font-light" data-i18n="card2.title">快速体验</h3>
+                    <p class="text-text-body text-sm font-light" data-i18n="card2.desc">第一视角陶艺互动体验</p>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-yuebai flex items-center justify-center shrink-0 ml-4">
+                    <i class="fa-solid fa-palette text-xl text-tianqing"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Digital Museum ==================== -->
+<section class="py-20 sm:py-28 bg-white" id="museum">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-title-group fade-up">
+            <h2 data-i18n="museum.title">沉浸式数字博物馆</h2>
+            <p class="section-subtitle">官瓷文化与技艺科普馆 · 千年匠心，数字重生</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- ==================== Workshop: 匠心工坊 ==================== -->
+        <div id="workshop" class="mb-24 scroll-mt-20">
+            <div class="text-center mb-6 fade-up">
+                <h3 class="mb-3 font-light" data-i18n="workshop.title">匠心工坊 · 72道工序</h3>
+                <p class="text-text-body text-sm font-light tracking-wider" data-i18n="workshop.subtitle">从选料到成器，每一步都凝聚匠心</p>
+            </div>
+
+            <!-- 板块简介 -->
+            <div class="max-w-3xl mx-auto detail-block mb-8 fade-up">
+                <p class="text-text-body text-sm leading-relaxed">匠心工坊是宋煌官瓷数字化体验平台的核心板块，由<a href="#about" class="text-tianqing-deep hover:underline">河南大学仝瓷记忆技术团队</a>历时三年打造。我们采用数字孪生技术，将宋代官窑传承千年的72道制瓷工序进行1:1数字化还原，打破了传统非遗技艺"口传心授、师徒相承"的传播局限，让每一位用户都能深入了解官瓷制作的每一个细节。</p>
+            </div>
+
+            <!-- 核心特色 -->
+            <div class="max-w-4xl mx-auto feature-grid mb-8 fade-up">
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-timeline text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">交互式时间轴</h4>
+                    </div>
+                    <p class="text-text-body text-sm">从"采石制泥"到"开窑验货"，72道工序完整呈现，点击任意工序即可查看详细步骤、工具介绍和工艺要点。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-microscope text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">显微摄影技术</h4>
+                    </div>
+                    <p class="text-text-body text-sm">放大100倍展示釉料在高温下的结晶过程，清晰呈现天青色釉面形成的微观世界。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-microphone text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">匠人访谈实录</h4>
+                    </div>
+                    <p class="text-text-body text-sm">收录国家级非遗传承人亲口讲述的制瓷心得和独家秘诀，传承匠人精神。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-hand-pointer text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">虚拟操作体验</h4>
+                    </div>
+                    <p class="text-text-body text-sm">模拟拉坯、施釉等关键工序，让用户在互动中感受制瓷的乐趣和难度。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-flask text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">化学原理解析</h4>
+                    </div>
+                    <p class="text-text-body text-sm">科学解释釉料配方、窑温控制与最终釉色之间的关系，揭示"一窑生一窑死"的奥秘。</p>
+                </div>
+            </div>
+
+            <!-- 工序时间轴 - 横向滚动 -->
+            <div class="horizontal-scroll px-4 sm:px-6 lg:px-8" id="timeline-container"></div>
+            <div class="scroll-hint">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>左右滑动浏览更多工序</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <!-- 详细工序介绍 -->
+            <div class="max-w-3xl mx-auto mt-10 fade-up">
+                <h4 class="text-center mb-6 font-light text-lg">工序详解</h4>
+                <div class="space-y-4">
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/3.jpg" alt="选料" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>选料</h4>
+                                <p class="text-text-body text-sm">精选河南禹州特有的高岭土、长石和石英，经过多次淘洗、沉淀、陈腐，去除杂质，使泥质细腻如脂。原料的品质直接决定了成品的档次，这是官瓷区别于普通瓷器的第一道门槛。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/4.jpg" alt="揉泥" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>揉泥</h4>
+                                <p class="text-text-body text-sm">采用菊花揉和羊角揉两种传统手法，反复揉压排除泥料中的气泡，防止烧制过程中出现炸裂。需经百余次手工揉制，直至泥料均匀致密、柔韧如膏方可使用。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/8.jpg" alt="拉坯" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>拉坯</h4>
+                                <p class="text-text-body text-sm">在转速均匀的陶轮上，用双手将泥料拉塑成各种器型，要求壁厚均匀，线条流畅，一气呵成。拉坯是制瓷工序中最具艺术性的环节，匠人的手感和经验至关重要。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/9.jpg" alt="修坯" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>修坯</h4>
+                                <p class="text-text-body text-sm">待坯体半干时，用修坯刀精细修整外形，使器型更加规整美观。这是决定瓷器最终形态的关键工序，稍有不慎便会前功尽弃。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/10.jpg" alt="施釉" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>施釉</h4>
+                                <p class="text-text-body text-sm">采用荡釉、浸釉、喷釉等多种技法，将釉料均匀地覆盖在坯体表面，釉层厚度控制在0.5-1毫米之间。釉料配方是官窑的核心机密，天青色的呈现全赖于此。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/11.jpg" alt="素烧" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>素烧</h4>
+                                <p class="text-text-body text-sm">将修好的坯体放入窑中，在800℃左右的温度下进行第一次烧制，使坯体硬化，便于后续施釉。素烧温度的精准控制直接影响釉面的附着效果。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-block">
+                        <div class="flex items-start gap-4">
+                            <img src="./images/13.jpg" alt="烧制" class="w-20 h-14 rounded-lg object-cover shrink-0 hidden sm:block">
+                            <div>
+                                <h4>烧制</h4>
+                                <p class="text-text-body text-sm">在1280-1320℃的高温下，经过12-15小时的烧制，釉料发生复杂的物理和化学反应，形成独特的天青色和冰裂纹。宋代官窑特有的满釉工艺，将器物底部也施满釉，仅用三个细小的支钉支撑烧制，成品几乎看不到任何瑕疵。窑内气氛的精妙控制，正是"一窑生一窑死"的奥秘所在。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户价值 -->
+            <div class="max-w-2xl mx-auto mt-10 text-center fade-up">
+                <div class="detail-block">
+                    <p class="text-text-body text-sm leading-relaxed"><i class="fa-solid fa-quote-left text-tianqing mr-2"></i>让用户从"旁观者"变成"参与者"，深入理解官瓷制作的艰辛与不易，真正体会"工匠精神"的内涵。<i class="fa-solid fa-quote-right text-tianqing ml-2"></i></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== History: 官瓷通史 ==================== -->
+        <div id="history" class="scroll-mt-20">
+            <div class="text-center mb-6 fade-up">
+                <h3 class="mb-3 font-light" data-i18n="history.title">官瓷通史 · 千年传承</h3>
+                <p class="text-text-body text-sm font-light tracking-wider" data-i18n="history.subtitle">从北宋至今，官窑瓷器的历史演变</p>
+            </div>
+
+            <!-- 板块简介 -->
+            <div class="max-w-3xl mx-auto detail-block mb-8 fade-up">
+                <p class="text-text-body text-sm leading-relaxed">官瓷通史构建了一个完整的宋代官瓷知识图谱，系统梳理了从北宋徽宗年间官窑设立，到南宋官窑延续，再到元明清各代传承发展的完整历史脉络。通过数字化叙事手段，结合历史文献、考古发现和虚拟复原场景，带用户穿越千年时空，感受宋瓷文化的博大精深。</p>
+            </div>
+
+            <!-- 核心特色 -->
+            <div class="max-w-4xl mx-auto feature-grid mb-8 fade-up">
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-diagram-project text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">交互式知识图谱</h4>
+                    </div>
+                    <p class="text-text-body text-sm">清晰展示官瓷与<a href="#history" class="text-tianqing-deep hover:underline">汝窑、哥窑、钧窑、定窑</a>等五大名窑之间的关系，以及官瓷对后世瓷器发展的影响。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-vr-cardboard text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">虚拟复原场景</h4>
+                    </div>
+                    <p class="text-text-body text-sm">3D复原北宋汴京官窑和南宋修内司官窑的窑场布局、生产流程和宫廷用瓷制度。</p>
+                </div>
+                <div class="detail-block">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center"><i class="fa-solid fa-book-open text-tianqing-deep text-xs"></i></div>
+                        <h4 class="mb-0">文物数字档案</h4>
+                    </div>
+                    <p class="text-text-body text-sm">收录全球各大博物馆收藏的宋代官瓷珍品高清图片和详细介绍，见<a href="#shop" class="text-tianqing-deep hover:underline">在线商城</a>。</p>
+                </div>
+            </div>
+
+            <!-- 历史时期 - 横向滚动 -->
+            <div class="flex flex-wrap justify-center gap-3 mb-6 fade-up" id="kg-nodes"></div>
+            <div class="horizontal-scroll px-4 sm:px-6 lg:px-8" id="history-scroll-container">
+                <!-- 由 JS 动态填充横向卡片 -->
+            </div>
+            <div class="scroll-hint">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>左右滑动浏览各朝代</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="max-w-3xl mx-auto feature-card p-8 sm:p-10 mt-8 fade-up" id="history-detail"></div>
+
+            <!-- 文化内涵 -->
+            <div class="max-w-2xl mx-auto mt-10 text-center fade-up">
+                <div class="detail-block">
+                    <p class="text-text-body text-sm leading-relaxed"><i class="fa-solid fa-quote-left text-tianqing mr-2"></i>宋代官瓷不仅是一种实用器物，更是宋代文人审美情趣和哲学思想的体现。它追求"天人合一"的境界，崇尚自然、含蓄、淡雅之美，代表了中国古代陶瓷艺术的最高水平。<i class="fa-solid fa-quote-right text-tianqing ml-2"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== AR & 3D ==================== -->
+<section class="py-20 sm:py-28 bg-bg-main" id="ar-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-title-group fade-up">
+            <h2 data-i18n="ar.title">虚实共生的视觉盛宴</h2>
+            <p class="section-subtitle">科技与文化的交融</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            <!-- 3D Gallery -->
+            <div id="3d-gallery" class="scroll-mt-20 fade-up">
+                <h3 class="mb-4 text-center font-light" data-i18n="3d.title">云端3D数字展馆</h3>
+                <p class="text-text-body text-sm text-center mb-8 font-light tracking-wider" data-i18n="3d.desc">360°沉浸式品鉴官瓷珍品</p>
+                <div class="feature-card p-5 sm:p-6">
+                    <canvas id="three-canvas"></canvas>
+                    <div class="flex items-center justify-between mt-5">
+                        <div class="flex gap-2">
+                            <button onclick="switchModel(0)" class="px-3 py-1.5 text-xs rounded-full bg-yuebai text-tianqing-deep font-medium hover:bg-tianqing hover:text-white transition-colors tracking-wider" data-i18n="3d.model1">官瓷瓶</button>
+                            <button onclick="switchModel(1)" class="px-3 py-1.5 text-xs rounded-full bg-yuebai text-tianqing-deep font-medium hover:bg-tianqing hover:text-white transition-colors tracking-wider" data-i18n="3d.model2">莲花碗</button>
+                            <button onclick="switchModel(2)" class="px-3 py-1.5 text-xs rounded-full bg-yuebai text-tianqing-deep font-medium hover:bg-tianqing hover:text-white transition-colors tracking-wider" data-i18n="3d.model3">三足炉</button>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="toggleLight()" class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center hover:bg-tianqing hover:text-white transition-colors" aria-label="切换光源">
+                                <i class="fa-solid fa-lightbulb text-xs"></i>
+                            </button>
+                            <button onclick="resetCamera()" class="w-8 h-8 rounded-full bg-yuebai flex items-center justify-center hover:bg-tianqing hover:text-white transition-colors" aria-label="重置视角">
+                                <i class="fa-solid fa-arrows-rotate text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AR Experience -->
+            <div id="ar-exp" class="scroll-mt-20 fade-up">
+                <h3 class="mb-4 text-center font-light" data-i18n="ar.subtitle">AR实景交互体验</h3>
+                <p class="text-text-body text-sm text-center mb-8 font-light tracking-wider" data-i18n="ar.desc">虚实融合，穿越千年触碰匠心</p>
+                <div class="feature-card p-5 sm:p-6">
+                    <div class="ar-viewfinder">
+                        <div class="ar-corner tl"></div>
+                        <div class="ar-corner tr"></div>
+                        <div class="ar-corner bl"></div>
+                        <div class="ar-corner br"></div>
+                        <div class="ar-scan-line"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-white/70">
+                                <i class="fa-solid fa-cube text-4xl mb-3 text-tianqing"></i>
+                                <p class="text-sm font-light" data-i18n="ar.hint">将摄像头对准瓷器</p>
+                                <p class="text-xs mt-1 text-white/40 font-light" data-i18n="ar.note">AR功能需要后端支持和移动端摄像头权限</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-4 mt-5">
+                        <button onclick="openArModal()" class="px-5 py-2 text-sm rounded-full bg-tianqing-deep text-white font-normal hover:bg-tianqing transition-colors tracking-wider" data-i18n="ar.btn">开始AR体验</button>
+                        <button class="w-9 h-9 rounded-full bg-yuebai flex items-center justify-center hover:bg-tianqing hover:text-white transition-colors" aria-label="分享">
+                            <i class="fa-solid fa-share-nodes text-sm text-tianqing-deep"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Commerce ==================== -->
+<section class="py-20 sm:py-28 bg-white" id="commerce">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-title-group fade-up">
+            <h2 data-i18n="commerce.title">全链路文化服务</h2>
+            <p class="section-subtitle">从鉴赏到收藏，一站式体验</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            <!-- Exhibition Booking -->
+            <div id="exhibition" class="scroll-mt-20 fade-up">
+                <h3 class="mb-5 text-center font-light" data-i18n="exhibition.title">瓷品展览预约</h3>
+                <div class="space-y-4" id="exhibition-list"></div>
+            </div>
+
+            <!-- Online Shop -->
+            <div id="shop" class="scroll-mt-20 fade-up">
+                <h3 class="mb-5 text-center font-light" data-i18n="shop.title">在线商城</h3>
+                <div class="grid grid-cols-2 gap-4" id="product-list"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-20 sm:py-28 bg-bg-main">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="section-title-group fade-up">
+            <h2 data-i18n="i18n.title">助力文化出海</h2>
+            <p class="section-subtitle" data-i18n="i18n.desc">多语言覆盖，让世界看见宋瓷之美</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- 图片画廊 -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 max-w-5xl mx-auto fade-up">
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/6.jpg" alt="官瓷珍品" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/7.jpg" alt="制瓷工艺" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/8.jpg" alt="拉坯技艺" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/9.jpg" alt="修坯工序" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/10.jpg" alt="施釉工艺" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+            <div class="overflow-hidden rounded-xl aspect-square"><img src="./images/11.jpg" alt="窑火传承" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10 fade-up">
+            <span class="px-5 py-2 rounded-full bg-tianqing text-white text-sm font-normal tracking-wider">中文</span>
+            <span class="px-5 py-2 rounded-full bg-white border border-border-light text-text-body text-sm font-normal tracking-wider hover:border-tianqing hover:text-tianqing-deep transition-colors cursor-pointer">English</span>
+            <span class="px-5 py-2 rounded-full bg-white border border-border-light text-text-muted text-sm font-normal tracking-wider cursor-not-allowed">日本語 <span class="text-xs ml-1">即将推出</span></span>
+            <span class="px-5 py-2 rounded-full bg-white border border-border-light text-text-muted text-sm font-normal tracking-wider cursor-not-allowed">한국어 <span class="text-xs ml-1">即将推出</span></span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 text-text-muted text-sm fade-up font-light">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-globe text-tianqing"></i> <span data-i18n="i18n.countries">覆盖 30+ 国家和地区</span></div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-language text-tianqing"></i> <span data-i18n="i18n.langs">支持 4 种语言</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer id="about" class="bg-text-title text-white/60 pt-16 pb-8 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <div>
+                <div class="flex items-center gap-2.5 mb-5">
+                    <div class="w-8 h-8 rounded-full bg-tianqing flex items-center justify-center">
+                        <i class="fa-solid fa-circle-dot text-white text-xs"></i>
+                    </div>
+                    <span class="font-serif-cn font-light text-white text-lg tracking-widest">慧眼识瓷</span>
+                </div>
+                <p class="text-sm leading-relaxed font-light" data-i18n="footer.desc">河南大学仝瓷记忆技术团队，致力于用现代科技传承和弘扬中华优秀传统文化，让千年官瓷技艺在数字时代焕发新生。</p>
+            </div>
+            <div>
+                <h4 class="text-white font-normal mb-5 text-sm tracking-wider" data-i18n="footer.links">快速链接</h4>
+                <ul class="space-y-3 text-sm font-light">
+                    <li><a href="#hero" class="hover:text-tianqing transition-colors" data-i18n="nav.home">首页</a></li>
+                    <li><a href="#museum" class="hover:text-tianqing transition-colors">沉浸式博物馆</a></li>
+                    <li><a href="#workshop" class="hover:text-tianqing transition-colors" data-i18n="nav.workshop">匠心工坊</a></li>
+                    <li><a href="#history" class="hover:text-tianqing transition-colors" data-i18n="nav.history">官瓷通史</a></li>
+                    <li><a href="#3d-gallery" class="hover:text-tianqing transition-colors" data-i18n="nav.3d">3D展馆</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-normal mb-5 text-sm tracking-wider">更多</h4>
+                <ul class="space-y-3 text-sm font-light">
+                    <li><a href="#ar-exp" class="hover:text-tianqing transition-colors" data-i18n="nav.ar">AR体验</a></li>
+                    <li><a href="#exhibition" class="hover:text-tianqing transition-colors" data-i18n="nav.exhibition">展览预约</a></li>
+                    <li><a href="#shop" class="hover:text-tianqing transition-colors" data-i18n="nav.shop">在线商城</a></li>
+                    <li><a href="#" class="hover:text-tianqing transition-colors" data-i18n="footer.privacy">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-tianqing transition-colors" data-i18n="footer.terms">服务条款</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-normal mb-5 text-sm tracking-wider">关于我们</h4>
+                <p class="text-sm font-light leading-relaxed">河南大学仝瓷记忆技术团队</p>
+                <p class="text-sm font-light leading-relaxed mt-2">致力于用现代科技传承和弘扬中华优秀传统文化，让千年官瓷技艺在数字时代焕发新生。</p>
+            </div>
+        </div>
+        <div class="border-t border-white/10 pt-6 text-center text-xs text-white/30 font-light tracking-wider">
+            <p>&copy; 2026 <span data-i18n="footer.copy">河南大学仝瓷记忆团队. 保留所有权利.</span></p>
+            <p class="mt-2">网页制作：于子倬、邢雅静</p>
+        </div>
+    </div>
+</footer>
+<div id="ar-modal" class="modal-backdrop" onclick="if(event.target===this)closeArModal()">
+    <div class="modal-content text-center">
+        <div class="w-16 h-16 rounded-full bg-yuebai flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-camera text-2xl text-tianqing-deep"></i>
+        </div>
+        <h3 class="mb-3 font-light" data-i18n="modal.ar.title">AR实景体验</h3>
+        <p class="text-text-body text-sm mb-6 font-light" data-i18n="modal.ar.desc">AR功能需要后端服务支持和移动端摄像头权限。请在后端接口对接完成后使用此功能。</p>
+        <div class="bg-yuebai rounded-xl p-5 mb-6 text-left text-xs text-text-body font-mono">
+            <p class="font-semibold text-text-title mb-2">API Endpoints:</p>
+            <p>POST /api/ar/recognize</p>
+            <p>GET  /api/ar/models/{id}</p>
+            <p>POST /api/share</p>
+        </div>
+        <button onclick="closeArModal()" class="px-6 py-2.5 bg-tianqing-deep text-white rounded-full text-sm font-normal hover:bg-tianqing transition-colors tracking-wider" data-i18n="modal.close">我知道了</button>
+    </div>
+</div>
+
+<!-- Booking Modal -->
+<div id="booking-modal" class="modal-backdrop" onclick="if(event.target===this)closeBookingModal()">
+    <div class="modal-content">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="font-light" data-i18n="modal.booking.title">展览预约</h3>
+            <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full hover:bg-yuebai flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-text-body"></i>
+            </button>
+        </div>
+        <form id="booking-form" onsubmit="handleBooking(event)">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-normal text-text-title mb-1.5 tracking-wider" data-i18n="modal.booking.name">姓名</label>
+                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-border-light text-sm focus:outline-none focus:border-tianqing transition-colors font-light" placeholder="请输入您的姓名">
+                </div>
+                <div>
+                    <label class="block text-sm font-normal text-text-title mb-1.5 tracking-wider" data-i18n="modal.booking.phone">手机号</label>
+                    <input type="tel" required class="w-full px-4 py-2.5 rounded-xl border border-border-light text-sm focus:outline-none focus:border-tianqing transition-colors font-light" placeholder="请输入手机号">
+                </div>
+                <div>
+                    <label class="block text-sm font-normal text-text-title mb-1.5 tracking-wider" data-i18n="modal.booking.date">预约日期</label>
+                    <input type="date" required class="w-full px-4 py-2.5 rounded-xl border border-border-light text-sm focus:outline-none focus:border-tianqing transition-colors font-light">
+                </div>
+                <div>
+                    <label class="block text-sm font-normal text-text-title mb-1.5 tracking-wider" data-i18n="modal.booking.count">参观人数</label>
+                    <select class="w-full px-4 py-2.5 rounded-xl border border-border-light text-sm focus:outline-none focus:border-tianqing transition-colors font-light">
+                        <option>1人</option><option>2人</option><option>3人</option><option>4人</option><option>5人及以上</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="w-full mt-6 py-3 bg-tianqing-deep text-white rounded-xl text-sm font-normal hover:bg-tianqing transition-colors tracking-wider" data-i18n="modal.booking.submit">确认预约</button>
+        </form>
+    </div>
+</div>
+
+<!-- Product Detail Modal -->
+<div id="product-modal" class="modal-backdrop" onclick="if(event.target===this)closeProductModal()">
+    <div class="modal-content">
+        <div class="flex items-center justify-between mb-5">
+            <h3 id="product-modal-title" class="font-light"></h3>
+            <button onclick="closeProductModal()" class="w-8 h-8 rounded-full hover:bg-yuebai flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-text-body"></i>
+            </button>
+        </div>
+        <div id="product-modal-body"></div>
+    </div>
+</div>
+
+<!-- Cart Sidebar -->
+<div id="cart-sidebar">
+    <div class="p-6 h-full flex flex-col">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-light tracking-wider" data-i18n="cart.title">购物车</h3>
+            <button onclick="toggleCart()" class="w-8 h-8 rounded-full hover:bg-yuebai flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-text-body"></i>
+            </button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto space-y-3">
+            <p class="text-text-muted text-sm text-center py-8 font-light" data-i18n="cart.empty">购物车是空的</p>
+        </div>
+        <div class="border-t border-border-light pt-4 mt-4">
+            <div class="flex justify-between mb-4">
+                <span class="text-sm text-text-body font-light" data-i18n="cart.total">合计</span>
+                <span class="font-normal text-text-title" id="cart-total">¥0</span>
+            </div>
+            <button class="w-full py-3 bg-tianqing-deep text-white rounded-xl text-sm font-normal hover:bg-tianqing transition-colors tracking-wider" data-i18n="cart.checkout">结算（仅UI演示）</button>
+        </div>
+    </div>
+</div>
+<div id="cart-overlay" class="fixed inset-0 bg-black/20 z-[1000] hidden" onclick="toggleCart()"></div>
+
+<!-- Back to Top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">
+    <i class="fa-solid fa-chevron-up text-sm"></i>
+</button>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/three-scene.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
